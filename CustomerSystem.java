@@ -73,6 +73,7 @@ class CustomerSystem{
     public static boolean validateCreditCard(String creditCard) {
         Scanner user = new Scanner(System.in);
         System.out.println("This is a test");
+        System.out.println("Does git even work?");
 
         //Variables
         int count1 = 0;
