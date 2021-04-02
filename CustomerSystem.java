@@ -4,6 +4,7 @@
 
 import java.util.Scanner;
 // More packages may be imported in the space below
+import java.io.*;
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -155,6 +156,26 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
+        try {
+            //Asking the user to name the file themself
+            Scanner user = new Scanner(System.in);
+            System.out.println("What do you want to name your test file?");
+            String file = user.nextLine();
+
+            //Creating the file
+            File customer = new File(file);
+            FileWriter fileWriter = new FileWriter(customer);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            //Text in the file
+            printWriter.println("Is this how you do this?");
+            printWriter.println("Would you look at that!");
+
+            //Closing so that the lines actually print
+            printWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error has occured");
+        }
     }
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
