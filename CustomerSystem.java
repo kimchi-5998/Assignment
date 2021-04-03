@@ -29,7 +29,7 @@ class CustomerSystem{
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile();
+                generateCustomerDataFile("Valid list", name, true);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -151,29 +151,26 @@ class CustomerSystem{
         return valid;
     }
     /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
+    * Author - Benjamin Kim
+    * Description - Makes a list of people with a randum id number in a text file
+    * 
+    * @param - Text file name, Person's name, to add or replace (in this case, add)
+    * @return - No return. It is a void method
     */
-    public static void generateCustomerDataFile(){
-        try {
-            //Asking the user to name the file themself
-            Scanner user = new Scanner(System.in);
-            System.out.println("What do you want to name your test file?");
-            String file = user.nextLine();
-
+    public static void generateCustomerDataFile(String file, String customerInfo, boolean addInfo){
+        try {   //Runs this code
             //Creating the file
-            File customer = new File(file);
-            FileWriter fileWriter = new FileWriter(customer);
+            File fileName = new File("Valid List");
+            FileWriter fileWriter = new FileWriter(fileName, addInfo);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-
+    
             //Text in the file
-            printWriter.println("Is this how you do this?");
-            printWriter.println("Would you look at that!");
-
+            printWriter.println(customerInfo + "id #: ");
+    
             //Closing so that the lines actually print
             printWriter.close();
-        } catch (IOException e) {
+
+        } catch (IOException e) {   //If an IOException error occures, it prints this
             System.out.println("Error has occured");
         }
     }
