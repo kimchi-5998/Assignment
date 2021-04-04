@@ -5,6 +5,7 @@
 import java.util.Scanner;
 // More packages may be imported in the space below
 import java.io.*;
+import java.util.Random;
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -165,7 +166,7 @@ class CustomerSystem{
             PrintWriter printWriter = new PrintWriter(fileWriter);
     
             //Text in the file
-            printWriter.println(customerInfo + "id #: ");
+            printWriter.println(idNum + ", " + customerInfo);
     
             //Closing so that the lines actually print
             printWriter.close();
