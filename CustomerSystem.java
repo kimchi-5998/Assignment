@@ -17,7 +17,8 @@ class CustomerSystem{
         exitCondition = "9";
 
         // More variables for the main may be declared in the space below
-
+        String creditCard = " ";
+        
         do{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
@@ -26,10 +27,13 @@ class CustomerSystem{
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
                 enterCustomerInfo();
+                //User inputs credit card number
+                System.out.println("What is your credit card number?");
+                creditCard = reader.nextLine();
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile("Valid list", enterCustomerInfo(), validatePostalCode(), validateCreditCard("123456789"), true);
+                generateCustomerDataFile("Valid list", enterCustomerInfo(), validatePostalCode(), validateCreditCard(creditCard), true);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -72,7 +76,6 @@ class CustomerSystem{
     * @return - booleanValid
     */
     public static boolean validateCreditCard(String creditCard) {
-        Scanner user = new Scanner(System.in);
 
         //Variables
         int count1 = 0;
@@ -84,10 +87,6 @@ class CustomerSystem{
         int sumDoubleDigit = 0;
         int sumSingleDigit = 0;
         boolean valid = false;
-        
-        //User inputs credit card number
-        System.out.println("What is your credit card number?");
-        creditCard = user.nextLine();
 
         //Counting characters
         count1 = creditCard.length() - 1;
@@ -141,11 +140,11 @@ class CustomerSystem{
         //Finding if the card is valid
         if (sum%10 == 0) {  //If its ending in '0' it has to be divisible by 10 unless it is 0, but thats not possible.
             valid = true;
-            System.out.println("Your credit card is valid");
+            System.out.println("Valid");
         }
         else {  //Any number not divisible by 10 doesn not end in 0.
             valid = false;
-            System.out.println("Your credit card is not valid");
+            System.out.println("Not Valid");
         }
         return valid;
     }
@@ -169,7 +168,7 @@ class CustomerSystem{
             int idNum = rand.nextInt(1000000);
 
             //Text in the file
-            printWriter.println(idNum + ", " + customerInfo + ", " + postalValid + ", " + creditCardValid);
+            printWriter.println(idNum + ", " + customerInfo + ", Postal code is " + postalValid + ", Credit card is " + creditCardValid);
     
             //Closing so that the lines actually print
             printWriter.close();
