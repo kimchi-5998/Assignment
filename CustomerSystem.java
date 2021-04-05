@@ -18,7 +18,6 @@ class CustomerSystem{
 
         // More variables for the main may be declared in the space below
 
-
         do{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
@@ -30,7 +29,7 @@ class CustomerSystem{
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile("Valid list", name, true);
+                generateCustomerDataFile("Valid list", enterCustomerInfo(), validatePostalCode(), validateCreditCard("123456789"), true);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -100,7 +99,6 @@ class CustomerSystem{
             sb.append(character);
         }
         String reverseCreditCard = sb.toString();
-        System.out.println(reverseCreditCard);
 
         //count for reversed credit card number so the digits are now correctly in place
         count2 = reverseCreditCard.length() - 1;
@@ -153,20 +151,25 @@ class CustomerSystem{
     }
     /*
     * Author - Benjamin Kim
-    * Description - Makes a list of people with a randum id number in a text file
+    * Description - Makes a list of people with a randum id number and other info in a text file
     * 
-    * @param - Text file name, Person's name, to add or replace (in this case, add)
+    * @param - Text file name, Person's name, whether the postal code is valid, whether the credit card is valid,
+    *  to add or replace (in this case, add)
     * @return - No return. It is a void method
     */
-    public static void generateCustomerDataFile(String file, String customerInfo, boolean addInfo){
+    public static void generateCustomerDataFile(String file, String customerInfo, String postalValid, boolean creditCardValid, boolean addInfo){
         try {   //Runs this code
             //Creating the file
-            File fileName = new File("Valid List");
+            File fileName = new File(file);
             FileWriter fileWriter = new FileWriter(fileName, addInfo);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-    
+            
+            //Random ID number (Couldn't get the non duplicate to work yet)
+            Random rand = new Random();
+            int idNum = rand.nextInt(1000000);
+
             //Text in the file
-            printWriter.println(idNum + ", " + customerInfo);
+            printWriter.println(idNum + ", " + customerInfo + ", " + postalValid + ", " + creditCardValid);
     
             //Closing so that the lines actually print
             printWriter.close();
