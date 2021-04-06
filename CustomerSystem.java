@@ -18,7 +18,7 @@ class CustomerSystem{
 
         // More variables for the main may be declared in the space below
         String creditCard = " ";
-        
+
         do{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
@@ -27,13 +27,10 @@ class CustomerSystem{
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
                 enterCustomerInfo();
-                //User inputs credit card number
-                System.out.println("What is your credit card number?");
-                creditCard = reader.nextLine();
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile("Valid list", enterCustomerInfo(), validatePostalCode(), validateCreditCard(creditCard), true);
+                generateCustomerDataFile("Valid List", true);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -59,7 +56,24 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void enterCustomerInfo() {
+    public static String enterCustomerInfo() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("welcome new Customer");
+        System.out.println("Enter your name:");
+        String name = sc.nextLine();
+        System.out.println("Enter age:");
+        int age = sc.nextInt();
+        System.out.println("Enter gender:");
+        String gender = sc.next();
+        sc.nextLine();
+        System.out.println("city:");
+        String from = sc.nextLine();
+        System.out.println("Address:");
+        System.out.println("Welcome," +name+"!");
+        System.out.println("Age:"+age);
+        System.out.println("Gender:"+gender);
+        System.out.println("City:"+from);
+        return (name + ", " + age + ", " + gender + ", " + from);
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -75,8 +89,10 @@ class CustomerSystem{
     * @param - String creditCard
     * @return - booleanValid
     */
-    public static boolean validateCreditCard(String creditCard) {
-
+    public static String validateCreditCard() {
+        Scanner user = new Scanner(System.in);
+        System.out.println("Enter credit card number");
+        String creditCard = user.nextLine();
         //Variables
         int count1 = 0;
         int count2 = 0;
@@ -140,13 +156,12 @@ class CustomerSystem{
         //Finding if the card is valid
         if (sum%10 == 0) {  //If its ending in '0' it has to be divisible by 10 unless it is 0, but thats not possible.
             valid = true;
-            System.out.println("Valid");
+            return "Card is valid";
         }
         else {  //Any number not divisible by 10 doesn not end in 0.
             valid = false;
-            System.out.println("Not Valid");
+            return "Card is not valid";
         }
-        return valid;
     }
     /*
     * Author - Benjamin Kim
@@ -156,19 +171,18 @@ class CustomerSystem{
     *  to add or replace (in this case, add)
     * @return - No return. It is a void method
     */
-    public static void generateCustomerDataFile(String file, String customerInfo, String postalValid, boolean creditCardValid, boolean addInfo){
+    public static void generateCustomerDataFile(String file, boolean addInfo){
+        String customerInfo = enterCustomerInfo();
+        String validCard = validateCreditCard();
+        int id = newId("Valid List");
         try {   //Runs this code
             //Creating the file
             File fileName = new File(file);
             FileWriter fileWriter = new FileWriter(fileName, addInfo);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            
-            //Random ID number (Couldn't get the non duplicate to work yet)
-            Random rand = new Random();
-            int idNum = rand.nextInt(1000000);
 
             //Text in the file
-            printWriter.println(idNum + ", " + customerInfo + ", Postal code is " + postalValid + ", Credit card is " + creditCardValid);
+            printWriter.println(id + ", " + customerInfo + ", " + validCard);
     
             //Closing so that the lines actually print
             printWriter.close();
@@ -180,4 +194,49 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+    public static String lastLine (String file) {
+        String line;
+        String lastLine = " ";
+        Scanner scan = new Scanner(file);
+        if (scan.hasNextLine()) {
+            try {
+                BufferedReader input = new BufferedReader(new FileReader(file));
+                while ((line = input.readLine()) != null) {
+                    if (line == " ") {
+                        break;
+                    }
+                    lastLine = line;
+                }
+            } catch (IOException e) {
+                System.out.println("Error has occured");
+            }
+        }
+        else {
+            return " ";
+        }
+        return lastLine;
+    }
+
+    public static int numLength(String line) {
+        int lineLength = line.length(); //Get the length of the last line in the text file
+        for (int i = 0; i <= lineLength; i++) {
+            if (line.charAt(i) == ',') {
+                return i - 1;
+            }
+        }
+        return 0;
+    }
+    public static int getIdNumber(String line, int comma) {
+        String idNumStr = line.substring(0, comma);
+        int idNumber = Integer.parseInt(idNumStr); 
+        return idNumber;
+    }
+
+    public static int newId(String file) {
+        String lastLine = lastLine(file);
+        int length = numLength(lastLine);
+        int oldIdNum = getIdNumber(lastLine, length);
+        int id = oldIdNum + 1;
+        return id;
+    }
 }
