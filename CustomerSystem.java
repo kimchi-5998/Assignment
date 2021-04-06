@@ -29,7 +29,7 @@ class CustomerSystem{
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile("CustomerList.csv", true);
+                generateCustomerDataFile();
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -178,23 +178,21 @@ class CustomerSystem{
     *  to add or replace (in this case, add)
     * @return - No return. It is a void method
     */
-    public static void generateCustomerDataFile(String file, boolean addInfo){
+    public static void generateCustomerDataFile(){
         //Just in case
         Random rand = new Random(); //Random in case unique id doesn't work
         int id = rand.nextInt(1000000); //Making range very big
 
         //Calling other methods to add to CSV file
+        String file = fileName();
         String customerInfo = enterCustomerInfo();  
         String validCard = validateCreditCard();
-        //int id = newId("Valid List"); This method may not work but added in case Mr. Ho wants to look at it
+
+        //int id = newId("Valid List"); Commented this method out since it may not work but added in case Mr. Ho wants to look at it
 
         try {   //Runs this code
-            //Creating a file. File name is the same everytime. It is fixed in the main
-            File fileName = new File(file); 
-            //Creates fileWriter. Needs file name and true to continue. True is fixed in the main
-            FileWriter fileWriter = new FileWriter(fileName, addInfo); 
-            //PrintWriter which allows program to print lines
-            PrintWriter printWriter = new PrintWriter(fileWriter);
+            //PrintWriter which makes files and prints lines in the file allows program to print lines
+            PrintWriter printWriter = new PrintWriter(new File(file));
 
             //Text in the file
             printWriter.println(id + ", " + customerInfo + ", " + validCard);   //Using the methods
@@ -209,6 +207,21 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+
+    /*
+     * Author - Benjamin Kim
+     * Description - Allows the user the file on their own
+     * 
+     * @param - none
+     * @return - File name as a string
+     */
+    public static String fileName() {
+        Scanner user = new Scanner(System.in);
+        System.out.println("Name your file");
+        String fileName = user.nextLine();
+        String file = (fileName + ".csv");
+        return file;
+    }
     /* 
      * The methods below are what is used to make the unique ID number. 
      * It didn't work so I put it in comments below in case Mr. Ho wants to see it
