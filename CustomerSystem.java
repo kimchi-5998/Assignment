@@ -148,8 +148,8 @@ class CustomerSystem{
     * Author - Benjamin Kim
     * Description - Takes a credit card number with more than 9 characters and outputs if it is valid or not
     * 
-    * @param - String creditCard
-    * @return - booleanValid
+    * @param - No parameters
+    * @return - String if it is valid or not
     */
     public static String validateCreditCard() {
         Scanner user = new Scanner(System.in);
@@ -237,8 +237,7 @@ class CustomerSystem{
     * Author - Benjamin Kim
     * Description - Makes a list of people with a randum id number and other info in a text file
     * 
-    * @param - Text file name, Person's name, whether the postal code is valid, whether the credit card is valid,
-    *  to add or replace (in this case, add)
+    * @param - No parameters
     * @return - No return. It is a void method
     */
     public static void generateCustomerDataFile(){
@@ -251,7 +250,6 @@ class CustomerSystem{
         String customerInfo = enterCustomerInfo();  
         String validCode = validatePostalCode();
         String validCard = validateCreditCard();
-
         //int id = newId("Valid List"); Commented this method out since it may not work but added in case Mr. Ho wants to look at it
 
         try {   //Runs this code
