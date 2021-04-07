@@ -236,7 +236,7 @@ class CustomerSystem{
     /*
     * Author - Benjamin Kim
     * Description - Makes a list of people with a randum id number and other info in a text file
-    * just a test
+    * 
     * @param - Text file name, Person's name, whether the postal code is valid, whether the credit card is valid,
     *  to add or replace (in this case, add)
     * @return - No return. It is a void method
@@ -249,6 +249,7 @@ class CustomerSystem{
         //Calling other methods to add to CSV file
         String file = fileName();
         String customerInfo = enterCustomerInfo();  
+        String validCode = validatePostalCode();
         String validCard = validateCreditCard();
 
         //int id = newId("Valid List"); Commented this method out since it may not work but added in case Mr. Ho wants to look at it
@@ -258,7 +259,7 @@ class CustomerSystem{
             PrintWriter printWriter = new PrintWriter(new File(file));
 
             //Text in the file
-            printWriter.println(id + ", " + customerInfo + ", " + validCard);   //Using the methods
+            printWriter.println(id + ", " + customerInfo + ", " + validCode + ", " + validCard);   //Using the methods
     
             //Closing so that the lines actually print
             printWriter.close();
