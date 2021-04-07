@@ -173,7 +173,7 @@ class CustomerSystem{
     /*
     * Author - Benjamin Kim
     * Description - Makes a list of people with a randum id number and other info in a text file
-    * 
+    * just a test
     * @param - Text file name, Person's name, whether the postal code is valid, whether the credit card is valid,
     *  to add or replace (in this case, add)
     * @return - No return. It is a void method
