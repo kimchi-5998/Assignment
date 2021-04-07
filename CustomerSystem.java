@@ -227,10 +227,10 @@ class CustomerSystem{
 
         //Finding if the card is valid
         if (sum%10 == 0) {  //If its ending in '0' it has to be divisible by 10 unless it is 0, but thats not possible.
-            return "Card is valid";
+            return (creditCard + " is valid");
         }
         else {  //Any number not divisible by 10 doesn not end in 0.
-            return "Card is not valid";
+            return (creditCard + " is not valid");
         }
     }
     /*
@@ -263,7 +263,7 @@ class CustomerSystem{
             //Closing so that the lines actually print
             printWriter.close();
 
-        } catch (IOException e) {   //If an IOException error occures, it prints this
+        } catch (IOException e) {   //If an IOException error occurs, it prints this
             System.out.println("Error has occured");
         }
     }
