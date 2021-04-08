@@ -29,7 +29,7 @@ class CustomerSystem{
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile();
+                generateCustomerDataFile(true);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -55,23 +55,23 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static String enterCustomerInfo() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("welcome new Customer");
-        System.out.println("Enter your name:");
-        String name = sc.nextLine();
-        System.out.println("Enter age:");
-        int age = sc.nextInt();
-        System.out.println("Enter gender:");
-        String gender = sc.next();
+    public static String enterCustomerInfo() {   //this method allows the user to enter Customer there info 
+        Scanner sc = new Scanner(System.in);                   //sets up scaner 
+        System.out.println("welcome new Customer");                // welcomes user to interface 
+        System.out.println("Enter your name:");                  // user enters name 
+        String name = sc.nextLine();                       // next line is enterted 
+        System.out.println("Enter age:");                 // user can enter age 
+        int age = sc.nextInt();                            // next line is isssued 
+        System.out.println("Enter gender:");              // user can enter there gender 
+        String gender = sc.next();                    // whats written in line 65 is then printed out agian in the next line 
         sc.nextLine();
-        System.out.println("city:");
-        String from = sc.nextLine();
-        System.out.println("Address:");
-        System.out.println("Welcome," +name+"!");
-        System.out.println("Age:"+age);
-        System.out.println("Gender:"+gender);
-        System.out.println("City:"+from);
+        System.out.println("city:");                 // code asks user for city 
+        String from = sc.nextLine();                // next line 
+        System.out.println("Address:");                 // user is asked for 
+        System.out.println("Welcome," +name+"!");          // System says welcome with user name 
+        System.out.println("Age:"+age);                 // then repeats for following lines 
+        System.out.println("Gender:"+gender);           // gender answer is printed out next to gender
+        System.out.println("City:"+from);                  // city is printed out next to from or answer 
         return (name + ", " + age + ", " + gender + ", " + from);
     }
     /*
@@ -79,70 +79,71 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validatePostalCode(){
-        Scanner kb = new Scanner(System.in);
-        System.out.println("Please enter postalcode:");
-        String posCode = kb.nextLine();
-  
-         if (posCode.length() > 7) 
-             System.out.println("\nInvalid");
-         if (posCode.length() < 6) 
-             System.out.println("\nInvalid");    
-         if (posCode.length()== 7){
+    public static String validatePostalCode(){
+        Scanner kb = new Scanner(System.in); // scanner is set up 
+        System.out.println("enter postalcode:"); // system tells user to input postal code 
+        String postalCode = kb.nextLine(); // postal code on the next line 
+         if (postalCode.length() > 7)  // if the postal code is greater then 7 the system says its invalid 
+             System.out.println("\nInvalid");  // if invalid System tells user and prints out invalid and file ends 
+         if (postalCode.length() < 6)  // if postal code is less then 6 it would also say its invalid 
+             System.out.println("\nInvalid");    // would print out invalid 
+         if (postalCode.length()== 7){ // if it = 7 then it would say its valid 
              boolean valid = true;
   
-              char a = posCode.charAt(0);
-              char b = posCode.charAt(2);
-              char c = posCode.charAt(4);
-              char d = posCode.charAt(1);
-              char e = posCode.charAt(5);
-              char f = posCode.charAt(6);
-              char g = posCode.charAt(3);
-              if(! Character.isLetter(a))
+              char a = postalCode.charAt(0); // sets up numbers that can be used in this method 
+              char b = postalCode.charAt(2); // for inputing the postal code.
+              char c = postalCode.charAt(4); // goes by a letter number pattern (A1A1A1A)
+              char d = postalCode.charAt(1);
+              char e = postalCode.charAt(5);
+              char f = postalCode.charAt(6);
+              char g = postalCode.charAt(3);
+              if(! Character.isLetter(a)) 
                   valid = false; 
-              else if (! Character.isLetter(b))
+              else if (! Character.isLetter(b)) // if user inputs postal code like 1cbb3v it would say invalid due to the letters being next to each other 
                   valid = false;
-              else if (! Character.isDigit(c))
+              else if (! Character.isDigit(c))  //checks if digit is not c and sets valid to false 
                   valid = false;
-              else if (! Character.isDigit(d))
+              else if (! Character.isDigit(d))//checks if digit is not d and sets valid to false 
                   valid = false;
-              else if (! Character.isLetter(e))
+              else if (! Character.isLetter(e)) //checks if digit is not e and sets valid to false 
                   valid = false;
-              else if (! Character.isDigit(f))
+              else if (! Character.isDigit(f)) //checks if digit is not f and sets valid to false 
                   valid = false;
-              else if (! Character.isWhitespace(g))
+              else if (! Character.isWhitespace(g)) //checks if digit is not g and sets valid to false 
                   valid = false;
   
-             if (valid) System.out.println("\nValid");
-             else System.out.println("\nInvalid");
-         }
-         if (posCode.length()== 6){
-             boolean valid = true;
+             if (valid) System.out.println("\nValid"); // if lines above match with code instructions then system would print out valid 
+             else System.out.println("\nInvalid"); // if what user inputs is not accurate and done correct system will print out invalid 
+         } 
+         if (postalCode.length()== 6){  // if postal code that user inputs is = to 6 
+             boolean valid = true; // system prints out valid = true 
   
-              char a = posCode.charAt(0);
-              char b = posCode.charAt(2);
-              char c = posCode.charAt(4);
-              char d = posCode.charAt(1);
-              char e = posCode.charAt(3);
-              char f = posCode.charAt(5);
-              if(! Character.isLetter(a))
+              char a = postalCode.charAt(0);  //sets char a value to equal postalcodechar at 0
+              char b = postalCode.charAt(2); // sets all values for the next 5 lines to =  a character
+              char c = postalCode.charAt(4);
+              char d = postalCode.charAt(1);
+              char e = postalCode.charAt(3);
+              char f = postalCode.charAt(5);
+              if(! Character.isLetter(a)) //checks if digit is not a  and sets valid to false 
                   valid = false; 
-              else if (! Character.isLetter(b))
+              else if (! Character.isLetter(b)) //checks if digit is not b and sets valid to false 
                   valid = false;
-              else if (! Character.isLetter(c))
+              else if (! Character.isLetter(c))  //checks if digit is not  c and sets valid to false 
                   valid = false;
-              else if (! Character.isDigit(d))
+              else if (! Character.isDigit(d)) //checks if digit is not d and sets valid to false 
                   valid = false;
-              else if (! Character.isDigit(e))
+              else if (! Character.isDigit(e)) //checks if digit is not e and sets valid to false 
                   valid = false;
-              else if (! Character.isDigit(f))
-                  valid = false;
+              else if (! Character.isDigit(f)) //checks if digit is not f and sets valid to false 
+                  valid = false;     // sets valid to false 
   
   
-             if (valid) System.out.println("\nValid");
-             else System.out.println("\nInvalid");
+             if (valid) System.out.println("\nValid"); // if rules are met system prints out valid 
+             else System.out.println("\nInvalid"); // if rules are not met system prints out invalid 
+             if (valid==true ) { return (postalCode + "is valid");} // system returns back is valid if true 
+             else { return (postalCode + " is not valid");} // if false system returns back invalid 
          }
-         System.out.println("Program ending due to end-of-file");
+        return postalCode; // returns postal code user inputs
     }
     /*
     * Author - Benjamin Kim
@@ -160,9 +161,9 @@ class CustomerSystem{
         int count1 = 0; //Count for for loop that reverses string. Is one less than count because of how a computer counts digits
         int count2 = 0; //Count for reversed credot card. Need to count it again to use in other for loop
         int count3 = 0; //Count for even digits that equal more than 10 when doubled
-        int sum;    //Overall sum of credit card after all processes are done
+        int sum;        //Overall sum of credit card after all processes are done
         int oddSum = 0; //Sum of the odd digits
-        int evenSum = 0;    //Overall sum of even digits
+        int evenSum = 0;        //Overall sum of even digits
         int sumDoubleDigit = 0; //Sum of even digits that had 2 digits after doubling
         int sumSingleDigit = 0; //Sum of even digits that had only 1 digit after doubling
 
@@ -240,7 +241,7 @@ class CustomerSystem{
     * @param - No parameters
     * @return - No return. It is a void method
     */
-    public static void generateCustomerDataFile(){
+    public static void generateCustomerDataFile(boolean addInfo){
         //Just in case
         Random rand = new Random(); //Random in case unique id doesn't work
         int id = rand.nextInt(1000000); //Making range very big
@@ -253,11 +254,13 @@ class CustomerSystem{
         //int id = newId("Valid List"); Commented this method out since it may not work but added in case Mr. Ho wants to look at it
 
         try {   //Runs this code
-            //PrintWriter which makes files and prints lines in the file allows program to print lines
-            PrintWriter printWriter = new PrintWriter(new File(file));
+            //Needed to make file and print in it
+            File fileName = new File(file);
+            FileWriter fileWriter = new FileWriter(fileName, addInfo);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
 
             //Text in the file
-            printWriter.println(id + ", " + customerInfo + ", " + validCode + ", " + validCard);   //Using the methods
+            printWriter.println(id + ", " + customerInfo + ", " + validCode + ", "+ validCard);   //Using the methods
     
             //Closing so that the lines actually print
             printWriter.close();
